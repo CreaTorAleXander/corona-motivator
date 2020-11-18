@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/jpg" href="./ball.jpg">
+    <script language="javascript" type="text/javascript" src="./scripts/workout-handling.js"></script>
+    <link rel="stylesheet" href="./styles/style.css">
+    <title>Corona Motivator</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="heading">
+        <h1><span class="red_psv">PSV</span> Corona Motivator</h1>        
+      </div>
+      
+     <div class="navigation">
+      <div class="list-points"><img src="./best-seller.svg" height="20%" width="10%"><a href="./index.html">Ranking</a></div><br>
+      <div class="list-points"><img src="./add.svg" height="20%" width="10%"><a href="./views/addWorkout.html">Hinzufügen</a></div><br>
+      <div class="list-points"><img src="./liste.svg" height="20%" width="10%"><a href="./views/allWorkouts.html">Aktivitäten</a></div><br>
+     </div> 
+     
+      <div class="longestDistance">
+        <h2>Einzel Distanzen</h2>  
+        <div id="displayLongestDistance">
+          <script>longestDistance()</script>
+        </div>
+      </div>      
+
+      <div class="fastestWorkout">
+        <h2>Die Besten Zeiten</h2>
+        <div id="displayFastestDistance">
+          <script>fastestWorkout()</script>
+        </div>
+      </div>
+
+      <div class="fullDistance">
+        <h2>Gesamtstrecke</h2>
+        <div id="displayFullDistance">
+          <script>entireDistanceFromUser()</script>
+        </div>
+      </div>
+
+      
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/html-duration-picker/dist/html-duration-picker.min.js"></script>
+  </body>
+</html>

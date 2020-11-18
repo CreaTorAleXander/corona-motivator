@@ -1,0 +1,107 @@
+.container{
+    display: grid;
+    grid-template-rows:100px 1fr;
+    grid-template-columns: 10% 30%  30% 30%; 
+    column-gap: 50px ;
+}
+
+.navigation{
+    grid-column: 1;
+    grid-row: 2;
+    margin-top: 30px;
+}
+
+.heading{
+    background-color: darkblue;
+    grid-column:1 / 5; 
+    grid-row:1;
+}
+
+.longestDistance{
+    grid-column: 2 ;
+    grid-row: 2;
+
+}
+
+.fastestWorkout{
+    grid-column: 3;
+    grid-row: 2;
+}
+
+.fullDistance{
+    grid-column: 4;
+    grid-row: 2;
+}
+h1{
+    
+    font-weight: bold;
+    color: white;
+    text-align: center;
+}
+
+h2{
+    color: rgba(240, 83, 83);
+}
+
+a{
+    color: black;
+}
+
+.workoutCard{
+    height: 60px;
+    width: 60%;
+    background-color: white;  
+    border: solid darkblue 2px;
+    padding-left: 20px;
+    border-radius: 10px;
+    color: white;
+    margin-top: 15px;
+}
+.username{
+    color: rgba(240, 83, 83);
+        font-weight: bolder;
+}
+.distance{
+    color: darkblue;;
+    font-weight: bold;
+    padding-left: 18px;
+}
+
+.platzierung{
+    color: darkblue;
+        font-weight: bold;
+}
+
+.red_psv{
+    color: rgba(240, 83, 83);
+}
+
+.value{
+    color: rgba(240, 83, 83);
+}
+
+.list-points{
+    width: 100%;
+    height: 10%;
+    background-color:white;
+    border: solid black 3px;
+    border-radius: 5px;
+    
+}
+
+
+
+/* add workout */
+.input_section{
+    grid-column:3 ; 
+    grid-row:2 ;
+        margin: 0;
+        box-sizing: border-box;
+}
+
+label{
+    color: darkblue;
+    font-weight: bold;
+   
+}
+
