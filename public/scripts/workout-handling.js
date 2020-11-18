@@ -18,7 +18,6 @@ async function getWorkouts(){
 }
 
 async function addWorkout(){
-    console.log("inside")
 
     let user = document.getElementById('user').value;
     let distance = document.getElementById('distance').value;
@@ -27,7 +26,7 @@ async function addWorkout(){
     let duration = document.getElementById('duration').value;
     console.log(user + " " + distance + " " + duration)
 
-    const data = {user, distance, duration};
+    const data = {user, duration, distance};
     const options = {
         method: 'POST',
         headers: {
@@ -60,48 +59,61 @@ async function fastestWorkout(){
         min += mm ;
         min += hh * 60;
 
-
-        // to sort convert to Number sort and then convert back to String        
-
-
-        let minDivKm = min / arr[i].distance;
-        let seconds = (minDivKm % 1) * 60;
+        let minPerKm = min / arr[i].distance;
+        let seconds = (minPerKm % 1) * 60;
         restSeconds = seconds % 1;
         seconds -= restSeconds;
-        minDivKm = minDivKm - (minDivKm % 1);
-        let stringMinDivKm = minDivKm + ":" + seconds;
+        minPerKm = minPerKm - (minPerKm % 1);
+        let stringminPerKm = minPerKm + ":" + seconds;
         
-        
-
-
+    
         let obj = {}
         obj["user"] = arr[i].user;
         obj["distance"] = arr[i].distance;
-        obj["minDivKm"] = stringMinDivKm;
+        obj["minPerKm"] = stringminPerKm;
         structure.push(obj);
     }
+}
 
 
-    structure.sort((a, b) => {
-        if (a.minDivKm < b.minDivKm){
-            return -1;
-        }else{
-            return 1;
-        }
-    })
 
-    let content = "";
-    for(let z = 0; z < structure.length; z++){
-       
-        content += `<div class="workoutCard">
-        <span class="platzierung">${z+1}. </span>
-        <span class="username">${structure[z].user}</span><br>
-        <span class="distance">Distanz: ${structure[z].distance} km</span><br>
-        <span class="distance"> <span class="value">${structure[z].minDivKm} </span> min/km </span>
-        </div>`
+for(let y = 0; y < structure.length; y++){
+  structure[y].minPerKm = structure[y].minPerKm.replace(":", ".");
+  structure[y].minPerKm = parseFloat(structure[y].minPerKm)
+
+
+  console.log(typeof(structure[y].minPerKm))
+}
+
+for(let x = 0; x < structure.length; x++){
+    console.log(structure[x])
+}
+
+// Now sort the array from small to big
+structure.sort((a, b) => {
+    if (a.minPerKm > b.minPerKm){
+        return 1;
+    }else{
+        return -1;
     }
-    document.getElementById("displayFastestDistance").innerHTML = content;
-    }
+})
+
+for(let y = 0; y < structure.length; y++){
+    structure[y].minPerKm = structure[y].minPerKm + " ";
+    structure[y].minPerKm = structure[y].minPerKm.replace(".", ":");
+  }
+
+let content = "";
+for(let z = 0; z < structure.length; z++){
+    
+    content += `<div class="workoutCard">
+    <span class="platzierung">${z+1}. </span>
+    <span class="username">${structure[z].user}</span><br>
+    <span class="distance">Distanz: ${structure[z].distance} km</span><br>
+    <span class="distance"> <span class="value">${structure[z].minPerKm} </span> min/km </span>
+    </div>`
+}
+document.getElementById("displayFastestDistance").innerHTML = content;
 }
 
 async function entireDistanceFromUser(){
