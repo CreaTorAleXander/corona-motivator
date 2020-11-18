@@ -1,7 +1,7 @@
 # Corona-Motivator
-## Während der Corona Zeit kann man viele Sportarten nicht mehr normal ausüben. Für all jene die sich in dieser Zeit mit Joggen fit halten möchten und schwierigkeiten haben sich zu motivieren ist der Corona Motivator genau das richtige.
+* Während der Coronazeit kann man viele Sportarten nicht mehr normal ausüben. Für all jene die sich in dieser Zeit mit Joggen fit halten möchten und Schwierigkeiten haben sich zu motivieren ist der Corona-Motivator genau das richtige.
 
-* trete gegen deine Freunde an und schaue wer am meisten für seine Fitness tut.
+* Trete gegen deine Freunde an und schaue, wer von euch am meisten für seine Fitness tut.
 
 ![Ranking-Site](./corona-otivator.png)
 
