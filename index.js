@@ -1,57 +1,59 @@
 const express = require('express');
 const app = express();
 const port = 3000;
+const MongoClient = require('mongodb').MongoClient;
+const url = "generic";
+
+// Errors they may occur
+const assert = require('assert');
 
 
-// data structure to store the user input
-// example data
-let arr = [];
-arr[0] = {"user": "Moritz", "duration": "20:32:22", "distance": 5.56};
-arr[1] = {"user": "Christian", "duration": "32:44:43", "distance": 3.21};
-arr[2] = {"user": "Max", "duration": "32:44:55", "distance": 3.21};
-arr[3] = {"user": "Alex", "duration": "03:44:04", "distance": 23.50};
-arr[4] = {"user": "Moritz", "duration": "02:44:03", "distance": 25.56};
-arr[5] = {"user": "Alex", "duration": "01:44:04", "distance": 13.50};
-arr[6] = {"user": "Alex", "duration": "01:00:00", "distance": 10.00};
+const dbName = 'test_sample_activities';
+const client = new MongoClient(url);
 
 
 
+client.connect(function(err) {
+  assert.strictEqual(null, err);
+  // parse incoming data as json IMPORTANT!
+  app.use(express.json({limit: '1mb'}));
+  app.use(express.static('public'));
+  
+  app.listen(port, () => {
+      console.log(`Example app listening at http://localhost:${port}`)
+    })
 
-
-
-// parse incoming data as json IMPORTANT!
-app.use(express.json({limit: '1mb'}));
-app.use(express.static('public'));
-
-app.listen(port, () => {
-    console.log(`Example app listening at http://localhost:${port}`)
-  })
-
+  const db = client.db(dbName);
+  const activitesCollection = db.collection('activities')
 
   app.post('/API/addWorkout', (req, res) => {
-    console.log("Inside addWorkout")
-    let user = req.body.user;
-    let duration = req.body.duration;
-    let distance = Number(req.body.distance);
-    // duration is not a number how to parse it
-    // to work with the duration
-    // split at the columns and calculate the seconds
-    // thats it 
-    console.log(duration);
-    
-    arr.push({"user": user,  "distance": distance, "duration": duration});
 
-   
-   
-    //   let user = 
-    //   let distance = req.body.distance;
-    //   let duration = req.body.duration; 
-    //   console.log("user" + user +  "distance:" + distance + "time:" + duration)
-    //   arr.push({"user": user, "distance": distance, "time": duration});
-      
-})
+    let use = req.body.user;
+    let dur = req.body.duration;
+    let dist = Number(req.body.distance);
+    let d = new Date();
+     String(d);
 
-app.get('/API/getWorkouts', (req, res) => {
-    console.log("Inside getWorkouts " , arr)
-    res.end(JSON.stringify(arr))
-})
+    const activityDocument = {
+      user: use,
+      duration: dur,
+      distance: dist,
+      date: d
+    };
+
+    activitesCollection.insertOne(activityDocument)
+    .then(result =>{
+      console.log(result)
+    })
+    .catch(error => console.error(error))
+    });
+
+    app.get('/API/getWorkouts', (req, res) => {
+      activitesCollection.find().toArray()
+      .then(results => {
+        console.log(results);
+        res.end(JSON.stringify(results));
+      })
+    .catch(error => console.error(error))
+    })
+ });
