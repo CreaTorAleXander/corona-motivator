@@ -2,8 +2,7 @@ const express = require('express');
 const app = express();
 const port = 3000;
 const MongoClient = require('mongodb').MongoClient;
-const url = "mongodb+srv://alexander:foo@cluster0.ksmnw.mongodb.net/<dbname>?retryWrites=true&w=majority";
-
+const url = "foo";
 // Errors they may occur
 const assert = require('assert');
 

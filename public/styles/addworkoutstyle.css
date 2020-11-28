@@ -60,9 +60,10 @@ label {
     margin-left: 10px;
   }
 
-  .addActiv_heading{
+.addActiv_heading{
       text-align: center;
-  }
+}
+
 .submit_addactivity{
     width: 100%;
     height: 40px;
@@ -70,9 +71,5 @@ label {
     font-size: large;
 }
 
-.list-points{
-    width: 100%;
-    height: 20%;
-    background-color:white;
-}
+
 
