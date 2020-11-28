@@ -190,7 +190,6 @@ async function longestDistance(){
             
         }
     }
-        
     document.getElementById("displayLongestDistance").innerHTML = content;
 }
     
@@ -203,7 +202,7 @@ async function allActivitiesByDate(){
 
     let data = await res.text();
     let arr = JSON.parse(data);
-    let switchedArr = []
+    let switchedArr = [];
     for (let i = arr.length-1; i >= 0; i--){
         switchedArr.push(arr[i]);
     }
@@ -214,7 +213,6 @@ async function allActivitiesByDate(){
         let stringminPerKm = calculateMinPerKm(arr[i].duration, arr[i].distance)
         resultString = formatHoursMins(stringminPerKm);
         let splittedDateArray = switchedArr[i].date.split(" ");
-        console.log(splittedDateArray[1])
 
         result = formatHoursMins(splittedDateArray[1]);
         let dateString = splittedDateArray[0] + " " + result;

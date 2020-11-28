@@ -3,6 +3,7 @@ const app = express();
 const port = 3000;
 const MongoClient = require('mongodb').MongoClient;
 const url = "foo";
+
 // Errors they may occur
 const assert = require('assert');
 
@@ -34,7 +35,7 @@ client.connect(function(err) {
     let day = d.getUTCDate();
     let month = d.getUTCMonth();
     let year = d.getUTCFullYear();
-    let hh = d.getUTCHours();
+    let hh = d.getUTCHours() + 1;
     let mm = d.getUTCMinutes();
     let utcdateWithouthhmm = day + "." + month + "." +year;
     let utcdate = day + "." + month + "." +year + " " + hh + ":" + mm;
