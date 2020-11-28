@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 5000;
 const MongoClient = require('mongodb').MongoClient;
 const url = _DATABASE_URI;
 
@@ -19,7 +19,7 @@ client.connect(function(err) {
   app.use(express.json({limit: '1mb'}));
   app.use(express.static('public'));
   
-  app.listen(port, () => {
+  app.listen(process.env.PORT || 5000, () => {
       console.log(`Example app listening at http://localhost:${port}`)
     })
 
