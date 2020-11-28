@@ -16,10 +16,25 @@
     grid-column:1 / 3; 
     grid-row:1;
 }
+h1{
+    
+    font-weight: bold;
+    color: white;
+    text-align: center;
+}
 
 h2{
     color: rgba(240, 83, 83);
 }
+
+.red_psv{
+    color: rgba(240, 83, 83);
+}
+
+.value{
+    color: rgba(240, 83, 83);
+}
+
 
 .allworkouts{
     grid-column: 2;
@@ -27,7 +42,7 @@ h2{
     overflow-y: scroll;
 }
 .workoutCard{
-    height: 60px;
+    height: 20%;
     width: 60%;
     background-color: white;  
     border: solid darkblue 2px;

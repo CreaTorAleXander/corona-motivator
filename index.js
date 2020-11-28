@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const port = 3000;
 const MongoClient = require('mongodb').MongoClient;
-const url = "foo";
+const url = "mongodb+srv://alexander:foo@cluster0.ksmnw.mongodb.net/<dbname>?retryWrites=true&w=majority";
 
 // Errors they may occur
 const assert = require('assert');
@@ -27,7 +27,7 @@ client.connect(function(err) {
   const activitesCollection = db.collection('activities')
 
   app.post('/API/addWorkout', (req, res) => {
-
+    let alreadyInsert = false;
     let use = req.body.user;
     let dur = req.body.duration;
     let dist = Number(req.body.distance);
@@ -37,21 +37,41 @@ client.connect(function(err) {
     let year = d.getUTCFullYear();
     let hh = d.getUTCHours();
     let mm = d.getUTCMinutes();
+    let utcdateWithouthhmm = day + "." + month + "." +year;
     let utcdate = day + "." + month + "." +year + " " + hh + ":" + mm;
+    
+    activitesCollection.find({"user": use}).toArray()
+    .then(results => {
 
-    const activityDocument = {
-      user: use,
-      duration: dur,
-      distance: dist,
-      date: utcdate
-    };
+      for (let i = 0; i < results.length; i++){
+        let splittedArr = results[0].date.split(" ");
+        
+        if(splittedArr[0] === utcdateWithouthhmm){
+          alreadyInsert = true; 
+          break;
+        }
+      }
 
-    activitesCollection.insertOne(activityDocument)
-    .then(result =>{
-      console.log(result)
+      if(!(alreadyInsert)){
+        const activityDocument = {
+          user: use,
+          duration: dur,
+          distance: dist,
+          date: utcdate
+        };
+
+        activitesCollection.insertOne(activityDocument)
+        .then(result =>{
+        })
+        .catch(error => console.error(error))
+      }else{
+        res.end(new Error("Has Already Inserted Today"));
+      }
+      
+
     })
-    .catch(error => console.error(error))
-    });
+  .catch(error => console.error(error))
+});
 
     app.get('/API/getWorkouts', (req, res) => {
       activitesCollection.find().toArray()

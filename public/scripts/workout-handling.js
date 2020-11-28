@@ -1,5 +1,6 @@
 
 async function getWorkouts(){
+    
     let res = await fetch('/API/getWorkouts')
     let data = await res.json();
     let arr = JSON.parse(data);
@@ -18,7 +19,7 @@ async function getWorkouts(){
 }
 
 async function addWorkout(){
-
+    console.log("HEREEEE")
     let user = document.getElementById('user').value;
     let distance = document.getElementById('distance').value;
     distance = Number(String(distance).replace(",", "."))
@@ -37,6 +38,7 @@ async function addWorkout(){
 }
 
 
+
 async function fastestWorkout(){
     let res = await fetch('/API/getWorkouts')
 
@@ -50,24 +52,8 @@ async function fastestWorkout(){
 
                 if(arr[i].distance >= 10){
                     
-                    let min= 0;
-                    let splittedArr = arr[i].duration.split(":");
+                    let stringminPerKm = calculateMinPerKm(arr[i].duration, arr[i].distance)
                     
-                    let hh = Number(splittedArr[0]);
-                    let mm = Number(splittedArr[1]);
-                    let ss = Number(splittedArr[2]);
-                    
-                    min += ss / 60;
-                    min += mm ;
-                    min += hh * 60;
-                    
-                    
-                    let minPerKm = min / arr[i].distance;
-                    let seconds = (minPerKm % 1) * 60;
-                    restSeconds = seconds % 1;
-                    seconds -= restSeconds;
-                    minPerKm = minPerKm - (minPerKm % 1);
-                    let stringminPerKm = minPerKm + ":" + seconds;
                     
                     
                     let obj = {}
@@ -209,5 +195,58 @@ async function longestDistance(){
 }
     
 
+
+
+
+function calculateMinPerKm(duration, distance){
+    let min = 0;
+    let splittedArr = duration.split(":");
+                    
+    let hh = Number(splittedArr[0]);
+    let mm = Number(splittedArr[1]);
+    let ss = Number(splittedArr[2]);
+    
+    min += ss / 60;
+    min += mm ;
+    min += hh * 60;
+    console.log(distance)
+    let minPerKm = min / distance;
+    let seconds = (minPerKm % 1) * 60;
+    restSeconds = seconds % 1;
+    seconds -= restSeconds;
+    minPerKm = minPerKm - (minPerKm % 1);
+    let stringminPerKm = minPerKm + ":" + seconds;
+    return stringminPerKm;
+}
+
+
+async function allActivitiesByDate(){
+    let res = await fetch('/API/getWorkouts')
+
+    let data = await res.text();
+    let arr = JSON.parse(data);
+
+
+    let content = "";
+    for (let i = 0; i < arr.length; i++){
+
+        let stringminPerKm = calculateMinPerKm(arr[i].duration, arr[i].distance)
+        
+        if(arr[i] !== undefined){
+
+            content += `<div class="workoutCard">
+            <span class="platzierung">${i+1}. </span> 
+            <span class="username">${arr[i].user}</span><br>
+            <span class="distance">Distanz: <span class="value">${arr[i].distance}</span> km</span><br>
+            <span class="distance">Min / KM:<span class="value"> ${stringminPerKm}</span></span><br>
+            <span class="distance">Datum: <span class="value">${arr[i].date}</span></span><br>
+            
+            </div>`
+            
+        }
+    }
+        
+    document.getElementById("activitiesByDate").innerHTML = content;
+}
 
 
