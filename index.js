@@ -8,7 +8,7 @@ const url = process.env.DATABASE_URI;
 const assert = require('assert');
 
 
-const dbName = 'test_sample_activities';
+const dbName = process.env.databaseName;
 const client = new MongoClient(url);
 
 
@@ -19,7 +19,7 @@ client.connect(function(err) {
   app.use(express.json({limit: '1mb'}));
   app.use(express.static('public'));
   
-  app.listen(process.env.PORT || 5000, () => {
+  app.listen(port, () => {
       console.log(`Example app listening at http://localhost:${port}`)
     })
 
