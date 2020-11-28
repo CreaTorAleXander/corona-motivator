@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const port = 3000;
 const MongoClient = require('mongodb').MongoClient;
-const url = "generic";
+const url = "foo";
 
 // Errors they may occur
 const assert = require('assert');
@@ -32,13 +32,18 @@ client.connect(function(err) {
     let dur = req.body.duration;
     let dist = Number(req.body.distance);
     let d = new Date();
-     String(d);
+    let day = d.getUTCDate();
+    let month = d.getUTCMonth();
+    let year = d.getUTCFullYear();
+    let hh = d.getUTCHours();
+    let mm = d.getUTCMinutes();
+    let utcdate = day + "." + month + "." +year + " " + hh + ":" + mm;
 
     const activityDocument = {
       user: use,
       duration: dur,
       distance: dist,
-      date: d
+      date: utcdate
     };
 
     activitesCollection.insertOne(activityDocument)
@@ -51,7 +56,6 @@ client.connect(function(err) {
     app.get('/API/getWorkouts', (req, res) => {
       activitesCollection.find().toArray()
       .then(results => {
-        console.log(results);
         res.end(JSON.stringify(results));
       })
     .catch(error => console.error(error))

@@ -42,41 +42,41 @@ async function fastestWorkout(){
 
     let data = await res.text();
     let arr = JSON.parse(data);
-    console.log(arr)
-
 
 
     let structure = [];
-
+    
         for(let i = 0; i < arr.length; i++){
-            if(arr[i].distance >= 10){
-                
-                let min= 0;
-                let splittedArr = arr[i].duration.split(":");
 
-                let hh = Number(splittedArr[0]);
-                let mm = Number(splittedArr[1]);
-                let ss = Number(splittedArr[2]);
-                
-                min += ss / 60;
-                min += mm ;
-                min += hh * 60;
-
-
-                let minPerKm = min / arr[i].distance;
-                let seconds = (minPerKm % 1) * 60;
-                restSeconds = seconds % 1;
-                seconds -= restSeconds;
-                minPerKm = minPerKm - (minPerKm % 1);
-                let stringminPerKm = minPerKm + ":" + seconds;
-                
-                
-                let obj = {}
-                obj["user"] = arr[i].user;
-                obj["distance"] = arr[i].distance;
-                obj["minPerKm"] = stringminPerKm;
-                structure.push(obj);
-            }
+                if(arr[i].distance >= 10){
+                    
+                    let min= 0;
+                    let splittedArr = arr[i].duration.split(":");
+                    
+                    let hh = Number(splittedArr[0]);
+                    let mm = Number(splittedArr[1]);
+                    let ss = Number(splittedArr[2]);
+                    
+                    min += ss / 60;
+                    min += mm ;
+                    min += hh * 60;
+                    
+                    
+                    let minPerKm = min / arr[i].distance;
+                    let seconds = (minPerKm % 1) * 60;
+                    restSeconds = seconds % 1;
+                    seconds -= restSeconds;
+                    minPerKm = minPerKm - (minPerKm % 1);
+                    let stringminPerKm = minPerKm + ":" + seconds;
+                    
+                    
+                    let obj = {}
+                    obj["user"] = arr[i].user;
+                    obj["distance"] = arr[i].distance;
+                    obj["minPerKm"] = stringminPerKm;
+                    structure.push(obj);
+                }
+            
         }
     
         
@@ -101,16 +101,20 @@ for(let y = 0; y < structure.length; y++){
     structure[y].minPerKm = structure[y].minPerKm + " ";
     structure[y].minPerKm = structure[y].minPerKm.replace(".", ":");
   }
-console.log(structure)
+
+  // just print the best 10 activities
 let content = "";
-for(let z = 0; z < structure.length; z++){
-    
-    content += `<div class="workoutCard">
-    <span class="platzierung">${z+1}. </span>
-    <span class="username">${structure[z].user}</span><br>
-    <span class="distance">Distanz: ${structure[z].distance} km</span><br>
-    <span class="distance"> <span class="value">${structure[z].minPerKm} </span> min/km </span>
-    </div>`
+for(let z = 0; z < 10; z++){
+    if(structure[z] !== undefined){
+        content += `<div class="workoutCard">
+        <span class="platzierung">${z+1}. </span>
+        <span class="username">${structure[z].user}</span><br>
+        <span class="distance">Distanz: ${structure[z].distance} km</span><br>
+        <span class="distance"> <span class="value">${structure[z].minPerKm} </span> min/km </span>
+        </div>`
+    }else {
+        break;
+    }
 }
 document.getElementById("displayFastestDistance").innerHTML = content;
 }
@@ -157,13 +161,15 @@ async function entireDistanceFromUser(){
     })
 
     let content = "";
-    for(let z = 0; z < structure.length; z++){
+    for(let z = 0; z < 10; z++){
        
-        content += `<div class="workoutCard">
-        <span class="platzierung">${z+1}. </span>
-        <span class="username">${structure[z].user}</span><br>
-        <span class="distance">Gesamtdistanz: <span class="value">${structure[z].entireDistance}</span> km</span><br>
-        </div>`
+        if(structure[z] !== undefined){
+            content += `<div class="workoutCard">
+            <span class="platzierung">${z+1}. </span>
+            <span class="username">${structure[z].user}</span><br>
+            <span class="distance">Gesamtdistanz: <span class="value">${structure[z].entireDistance}</span> km</span><br>
+            </div>`
+        }
     }
     document.getElementById("displayFullDistance").innerHTML = content;
 
@@ -184,14 +190,19 @@ async function longestDistance(){
     })
 
     let content = "";
-    for (let i = 0; i < arr.length; i++){
+    for (let i = 0; i < 10; i++){
             
+        if(arr[i] !== undefined){
+
             content += `<div class="workoutCard">
             <span class="platzierung">${i+1}. </span> 
             <span class="username">${arr[i].user}</span><br>
             <span class="distance">Distanz: <span class="value">${arr[i].distance}</span> km</span><br>
+            <span class="distance">Datum: <span class="value">${arr[i].date}</span></span><br>
+            
             </div>`
-        
+            
+        }
     }
         
     document.getElementById("displayLongestDistance").innerHTML = content;

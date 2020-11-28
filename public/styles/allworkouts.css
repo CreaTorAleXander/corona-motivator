@@ -1,7 +1,7 @@
 .container{
     display: grid;
     grid-template-rows:100px 1fr;
-    grid-template-columns: 10% 30%  30% 30%; 
+    grid-template-columns: 10% 90%; 
     column-gap: 50px ;
 }
 
@@ -13,40 +13,19 @@
 
 .heading{
     background-color: darkblue;
-    grid-column:1 / 5; 
+    grid-column:1 / 3; 
     grid-row:1;
-}
-
-.longestDistance{
-    grid-column: 2 ;
-    grid-row: 2;
-
-}
-
-.fastestWorkout{
-    grid-column: 3;
-    grid-row: 2;
-}
-
-.fullDistance{
-    grid-column: 4;
-    grid-row: 2;
-}
-h1{
-    
-    font-weight: bold;
-    color: white;
-    text-align: center;
 }
 
 h2{
     color: rgba(240, 83, 83);
 }
 
-a{
-    color: darkblue;
+.allworkouts{
+    grid-column: 2;
+    grid-row: 2;
+    overflow-y: scroll;
 }
-
 .workoutCard{
     height: 60px;
     width: 60%;
@@ -71,13 +50,3 @@ a{
     color: darkblue;
         font-weight: bold;
 }
-
-.red_psv{
-    color: rgba(240, 83, 83);
-}
-
-.value{
-    color: rgba(240, 83, 83);
-}
-
-
