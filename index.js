@@ -1,8 +1,8 @@
 const express = require('express');
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 const MongoClient = require('mongodb').MongoClient;
-const url = "foo";
+const url = _DATABASE_URI;
 
 // Errors they may occur
 const assert = require('assert');
