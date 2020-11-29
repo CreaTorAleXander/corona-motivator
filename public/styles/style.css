@@ -90,7 +90,7 @@ a{
         display: grid;
         grid-template-rows: 10% 10% 30% 30% 30%;
         grid-template-columns: 100%; 
-        row-gap: 10px;
+        row-gap: 30px;
     }
     .heading{
         grid-row: 1;
