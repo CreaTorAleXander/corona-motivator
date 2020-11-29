@@ -34,7 +34,7 @@ client.connect(function(err) {
     let day = d.getUTCDate();
     let month = d.getUTCMonth();
     let year = d.getUTCFullYear();
-    let hh = d.getUTCHours();
+    let hh = d.getHours();
     
     let mm = d.getUTCMinutes();
     let utcdateWithouthhmm = day + "." + month + "." +year;
