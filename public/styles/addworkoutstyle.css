@@ -93,6 +93,10 @@ form{
     .navigation{
         grid-row: 2;
         grid-column: 1;
+        
+    }
+    li{
+        float: left;
     }
     /* add workout */
     .input_section{
