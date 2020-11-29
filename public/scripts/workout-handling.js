@@ -191,7 +191,7 @@ async function allActivitiesByDate(){
     let content = "";
     for (let i = 0; i < switchedArr.length; i++){
 
-        let stringminPerKm = calculateMinPerKm(arr[i].duration, arr[i].distance)
+        let stringminPerKm = calculateMinPerKm(switchedArr[i].duration, switchedArr[i].distance)
         resultString = formatHoursMins(stringminPerKm);
         let splittedDateArray = switchedArr[i].date.split(" ");
 
