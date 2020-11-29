@@ -29,10 +29,12 @@ client.connect(function(err) {
     let dur = req.body.duration;
     let dist = Number(req.body.distance);
     let d = new Date();
+    console.log("OFFSET" + d.getTimezoneOffset());
+
     let day = d.getUTCDate();
     let month = d.getUTCMonth();
     let year = d.getUTCFullYear();
-    let hh = d.getHours();
+    let hh = d.getUTCHours();
     
     let mm = d.getUTCMinutes();
     let utcdateWithouthhmm = day + "." + month + "." +year;
