@@ -33,12 +33,8 @@ client.connect(function(err) {
     let day = d.getUTCDate();
     let month = d.getUTCMonth();
     let year = d.getUTCFullYear();
-    let hh = d.getUTCHours();
-    if(hh === 23){
-      hh = 0
-    }else {
-      hh + 1;
-    }
+    let hh = d.getHours();
+    
     let mm = d.getUTCMinutes();
     let utcdateWithouthhmm = day + "." + month + "." +year;
     let utcdate = day + "." + month + "." +year + " " + hh + ":" + mm;

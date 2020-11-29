@@ -1,23 +1,3 @@
-
-async function getWorkouts(){
-    
-    let res = await fetch('/API/getWorkouts')
-    let data = await res.json();
-    let arr = JSON.parse(data);
-
-    for (let i = 0; i < arr.length; i++){
-        for(let j = 0; j < arr[i].length; j++){
-            console.log(arr[i][j]);
-            content += `<div class="workoutCard">
-            <span>User: ${activityData[i].user}</span><br>
-            <span>Distanz: ${activityData[i].distance}</span><br>
-            <span>Dauer: ${activityData[i].duration}</span>
-            </div>`
-        }
-    }    
-    document.getElementById("displayWorkouts").innerHTML = content;
-}
-
 async function addWorkout(){
     let user = document.getElementById('user').value;
     let distance = document.getElementById('distance').value;
@@ -52,9 +32,7 @@ async function fastestWorkout(){
                 if(arr[i].distance >= 10){
                     
                     let stringminPerKm = calculateMinPerKm(arr[i].duration, arr[i].distance)
-                    
-                    
-                    
+ 
                     let obj = {}
                     obj["user"] = arr[i].user;
                     obj["distance"] = arr[i].distance;
@@ -245,7 +223,7 @@ function formatHoursMins(stringMinPerKm){
     else if(splittedArray[0] === undefined){
         resultString +=  +  "00";
     }else {
-        resultString +=  splittedArray[0];
+        resultString +=  splittedArray[0].trim();
         
     }
     if(Number(splittedArray[1]) < 10){
@@ -255,7 +233,7 @@ function formatHoursMins(stringMinPerKm){
         resultString += ":" + "00";
         
     }else {
-        resultString += ":" + splittedArray[1];
+        resultString += ":" + splittedArray[1].trim();
     }
     
     return resultString;
