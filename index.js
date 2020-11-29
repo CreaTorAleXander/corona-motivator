@@ -29,7 +29,7 @@ client.connect(function(err) {
     let dur = req.body.duration;
     let dist = Number(req.body.distance);
     let d = new Date();
-    let day = d.getDate();
+    let day = d.getUTCDate();
     let month = d.getUTCMonth();
     let year = d.getUTCFullYear();
     let hh = d.getHours();
