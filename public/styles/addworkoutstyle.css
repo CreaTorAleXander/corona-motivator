@@ -42,20 +42,17 @@ a{
     grid-row:2 ;
     width: 50%;  
     height: 100%;
-    margin-left: 20%;
-    margin-right: 20%;
+    margin-left: 30%;
 }
 label {
     display: flex;
     flex-direction: row;
-    justify-content: flex-end;
-    text-align: right;
+    justify-content: flex-start;
     width: 79%;
     line-height: 20px;
     font-size: large;
     font-weight: bold;
     color: darkblue;
-    margin-right: 30%;
   }
   
   input {
@@ -65,16 +62,23 @@ label {
 }
 
 .addActiv_heading{
-      margin-left: 30%;
-}
-form{
-    border : solid darkblue 4px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
 }
 
+
 .submit_addactivity{
-    width: 100%;
+    
+    width: 400px;
     height: 40px;
     background-color: rgba(240, 83, 83);
     font-size: large;
 }
 
+.input_distance{
+    margin-left: 45px;
+  }
+  .input_user{
+    margin-left: 75px;
+  }

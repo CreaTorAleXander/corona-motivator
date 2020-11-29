@@ -6,7 +6,7 @@
     <link rel="icon" type="image/jpg" href="../ball.jpg">
     <script language="javascript" type="text/javascript" src="../scripts/workout-handling.js"></script>
     <link rel="stylesheet" media="screen and (min-width: 900px)" href="../styles/addworkoutstyle.css">
-    <link rel="stylesheet" media="screen and (max-width: 900px)" href="../styles/smallscreen.css">
+    <link rel="stylesheet" media="screen and (max-width: 900px)" href="../styles/smallscreenAdd.css">
 
     <title>Lauf Motivator</title>
   </head>
@@ -26,18 +26,18 @@
      </div>
           
     <div class="input_section">
+      <h2 class="addActiv_heading">Füge eine neue Aktivität hinzu</h2>
       <form>
-        <h2 class="addActiv_heading">Füge eine neue Aktivität hinzu</h2>
         <label for="user" >Username:
-          <input type="text" name="user" id="user" value="Max Mustermann">
+          <input class="input_user" type="text" name="user" id="user" value="Max Mustermann">
         </label>
         <br>
         <label for="distance">Distanz in KM:
-          <input id="distance" type="number" step="0.01" min="0"  value="10.00">       
+          <input class="input_distance" id="distance" type="number" step="0.01" min="0"  value="10.00">       
         </label>
         <br>
         <label for="duration">Dauer(hh:mm:ss):
-          <input  id="duration" value="01:00:00">    
+          <input class="input_duration" type="text" id="duration" value="01:00:00">    
         </label>
         <br>
         <button class="submit_addactivity" type="submit" onclick="addWorkout()">Absenden</button>

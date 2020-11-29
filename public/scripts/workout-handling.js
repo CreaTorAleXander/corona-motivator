@@ -1,19 +1,25 @@
 async function addWorkout(){
+
+    
     let user = document.getElementById('user').value;
     let distance = document.getElementById('distance').value;
     distance = Number(String(distance).replace(",", "."))
-     
     let duration = document.getElementById('duration').value;
-    console.log(user + " " + distance + " " + duration)
-    const data = {user, duration, distance};
-    const options = {
-        method: 'POST',
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data)
-    };
-    await fetch('/API/addWorkout', options);
+    
+    if(user.trim().length > 2 && user.trim().length < 50 && distance > 0 && distance < 50){
+        const data = {user, duration, distance};
+        const options = {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data)
+        };
+        await fetch('/API/addWorkout', options); 
+    }else{
+       alert("UNGÜLTIGE EINGABE")
+    }
+
 }
 
 async function fastestWorkout(){
@@ -65,7 +71,6 @@ for(let y = 0; y < structure.length; y++){
 let content = "";
 for(let z = 0; z < 10; z++){
     if(structure[z] !== undefined){
-        console.log("BLAAA "+ structure[z].minPerKm)
         let resultString = formatHoursMins(structure[z].minPerKm)
 
         content += `<div class="workoutCard">
@@ -239,7 +244,9 @@ function formatHoursMins(stringMinPerKm){
 
 function calculateMinPerKm(duration, distance){
     let min = 0;
-    let splittedArr = duration.split(":");
+    console.log(duration)
+    console.log(typeof(duration))
+        let splittedArr = duration.split(":");
                     
     let hh = Number(splittedArr[0]);
     let mm = Number(splittedArr[1]);

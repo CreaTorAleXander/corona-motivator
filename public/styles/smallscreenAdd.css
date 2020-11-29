@@ -87,9 +87,8 @@
     label {
         display: flex;
         flex-direction: row;
-        justify-content: flex-end;
-        text-align: right;
-        width: 70%;
+        justify-content: flex-start;
+        text-align: center;
         line-height: 20px;
         font-size: large;
         font-weight: bold;
@@ -98,23 +97,26 @@
       
       input {
         height: 20px;
-        flex: 0 0 200px;
+        flex: 0 0px 200px;
         margin-left: 10px;
     }
     
     .addActiv_heading{
-          text-align: center;
+      text-align: left;
     }
-    form{
-        margin-right: 0%;
-        border : solid darkblue 4px;
-    }
+  
     
     .submit_addactivity{
-        width: 100%;
+        width: 350px;
         height: 40px;
         background-color: rgba(240, 83, 83);
         font-size: large;
+    }
+    .input_distance{
+      margin-left: 45px;
+    }
+    .input_user{
+      margin-left: 75px;
     }
     
     

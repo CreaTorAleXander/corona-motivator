@@ -83,37 +83,3 @@ a{
     color: rgba(240, 83, 83);
 }
 
-
-@media only screen and (max-width: 1000px) {
-  
-    .container{
-        display: grid;
-        grid-template-rows: 10% 10% 30% 30% 30%;
-        grid-template-columns: 100%; 
-        row-gap: 30px;
-    }
-    .heading{
-        grid-row: 1;
-        grid-column: 1;
-    }
-    .navigation{
-        grid-row: 2;
-        grid-column: 1;
-    }
-    li{
-        float: left;
-        width: 30%;
-    }
-    .longestDistance{
-        grid-row: 3;
-        grid-column: 1;
-    }
-    .fastestWorkout{
-        grid-row: 4;
-        grid-column: 1;
-    }
-    .fullDistance{
-        grid-row: 5;
-        grid-column: 1;
-    }
-  }

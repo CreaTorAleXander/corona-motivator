@@ -61,7 +61,7 @@ a{
         display: grid;
         grid-template-rows: 5% 5% 30% 30% 30%;
         grid-template-columns: 100%; 
-        row-gap: 15px;
+        row-gap: 40px;
     }
     .heading{
         grid-row: 1;

@@ -29,7 +29,7 @@ client.connect(function(err) {
     let dur = req.body.duration;
     let dist = Number(req.body.distance);
     let d = new Date();
-    let day = d.getUTCDate();
+    let day = d.getDate();
     let month = d.getUTCMonth();
     let year = d.getUTCFullYear();
     let hh = d.getHours();
@@ -40,10 +40,8 @@ client.connect(function(err) {
     
     activitesCollection.find({"user": use}).toArray()
     .then(results => {
-
       for (let i = 0; i < results.length; i++){
-        let splittedArr = results[0].date.split(" ");
-        
+        let splittedArr = results[i].date.split(" ");
         if(splittedArr[0] === utcdateWithouthhmm){
           alreadyInsert = true; 
           break;
@@ -60,6 +58,7 @@ client.connect(function(err) {
 
         activitesCollection.insertOne(activityDocument)
         .then(result =>{
+          console.log(result)
         })
         .catch(error => console.error(error))
       }else{
