@@ -16,8 +16,6 @@ async function addWorkout(){
     await fetch('/API/addWorkout', options);
 }
 
-
-
 async function fastestWorkout(){
     let res = await fetch('/API/getWorkouts')
 
