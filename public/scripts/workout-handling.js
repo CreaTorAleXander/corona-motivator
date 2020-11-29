@@ -265,3 +265,9 @@ function calculateMinPerKm(duration, distance){
 
     return stringminPerKm;
 }
+
+function run (){
+    fastestWorkout();
+    longestDistance();
+    entireDistanceFromUser();
+}
