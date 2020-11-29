@@ -6,7 +6,6 @@ const url = process.env.DATABASE_URI;
 const assert = require('assert');
 
 const dbName = process.env.databaseName;
-
 const client = new MongoClient(url);
 
 
