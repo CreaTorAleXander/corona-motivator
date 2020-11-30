@@ -31,7 +31,7 @@ client.connect(function(err) {
     let d = new Date();
 
     let day = d.getUTCDate();
-    let month = d.getUTCMonth();
+    let month = d.getMonth();
     let year = d.getUTCFullYear();
     let hh = d.getHours();
     
