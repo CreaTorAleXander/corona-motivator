@@ -29,19 +29,21 @@ client.connect(function(err) {
     let dur = req.body.duration;
     let dist = Number(req.body.distance);
     let d = new Date();
-    let utcdate = d.toUTCString();
-    // let day = d.getUTCDate();
-    // let month = d.getMonth();
-    // let year = d.getUTCFullYear();
-    // let hh = d.getHours();
+
+    let day = d.getUTCDate();
+    let month = d.getMonth() + 1;
+    let year = d.getUTCFullYear();
+    let hh = d.getHours();
     
-  
+    let mm = d.getUTCMinutes();
+    let utcdateWithouthhmm = day + "." + month + "." +year;
+    let utcdate = day + "." + month + "." +year + " " + hh + ":" + mm;
     
     activitesCollection.find({"user": use}).toArray()
     .then(results => {
       for (let i = 0; i < results.length; i++){
         let splittedArr = results[i].date.split(" ");
-        if(splittedArr[0] === utcdate){
+        if(splittedArr[0] === utcdateWithouthhmm){
           alreadyInsert = true; 
           break;
         }
