@@ -30,8 +30,6 @@ There is also a page that shows all activities chronologically starting with the
 #### All Activities
 ![Add](./public/all.png)
 
-- To work with JavaScript [Date](https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/Date) was annoying especially with heroko because the heroku server is in the US and has a different timezone.
-
 
 #### Conclusion
 
